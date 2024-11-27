@@ -3,6 +3,13 @@
 
 Projeto desenvolvido para auxiliar no cálculo de dimensionamento de sistemas de ar condicionado com base em características específicas de ambientes, como dimensões, temperatura, e materiais de isolamento.
 
+## Alunos
+Tássia Nascimento | 202212166
+Mateus Chagas | 202212170
+José Renan Marins|202211065
+Jeanderson Amaral | 202211161
+Tamyres Lopes | 202211177
+
 ## Funcionalidades Principais
 - Cadastro de ambientes com dimensões e características térmicas.
 - Adição de camadas de materiais para cálculo de resistência térmica.
