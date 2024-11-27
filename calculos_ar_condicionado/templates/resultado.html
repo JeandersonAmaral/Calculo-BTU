@@ -1,0 +1,31 @@
+<div class="row">
+    <h1>Lista de Ambientes</h1>
+</div>
+<div class="row top-buffer">
+    <a class="btn btn-primary" href={% url 'criar_ambiente' %} role="button">Cadastrar novo ambiente</a>
+</div>
+<div class="row top-buffer">
+    <table class="table table-bordered">
+        {% for ambiente in lista %}
+            <tr>
+                <td>
+                    {{ ambiente.nome }}
+                    {% comment %} <ul>
+                        {% for t in ambiente.camadas.all %}
+                            <li>{{ t.material }}</li>
+                            <li>{{ t.espessura }}</li>
+                            <li>{{ t.condutividade }}</li>
+                        {% endfor %}
+                    </ul> {% endcomment %}
+                </td>
+                <td>
+                    <a href={% url 'editar' ambiente_id=ambiente.id %} >Editar</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>Nenhum cliente na base</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

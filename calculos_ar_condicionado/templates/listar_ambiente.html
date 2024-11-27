@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ambientes Cadastrados</title>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="min-h-screen flex flex-col items-center py-8 px-4">
+        <div class="w-full max-w-4xl bg-gray-800 shadow-md rounded-lg p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold border-b border-gray-700 pb-2">Ambientes Cadastrados</h1>
+                <a href="{% url 'criar' %}" class="bg-blue-600 text-gray-100 py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Novo Ambiente
+                </a>
+            </div>
+            <ul class="space-y-6">
+                {% for ambiente in lista %}
+                    <li class="bg-gray-700 p-4 rounded-md shadow-md">
+                        <h2 class="text-lg font-semibold text-blue-400">{{ ambiente.nome }}</h2>
+                        <p>Comprimento: <span class="text-gray-300">{{ ambiente.comprimento }} m</span></p>
+                        <p>Largura: <span class="text-gray-300">{{ ambiente.largura }} m</span></p>
+                        <p>Altura: <span class="text-gray-300">{{ ambiente.altura }} m</span></p>
+                        <p>Volume: <span class="text-gray-300">{{ ambiente.tamanho }} m³</span></p>
+                        <p>Camadas:</p>
+                        <ul class="list-disc list-inside text-gray-300">
+                            {% for camada in ambiente.camadas.all %}
+                                <li>{{ camada.material }} - {{ camada.espessura }} m, Condutividade: {{ camada.condutividade }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

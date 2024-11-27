@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Novo Ambiente</title>
+</head>
+<body>
+<div class="min-h-screen bg-gray-900 text-gray-100 flex items-center justify-center">
+    <form method="POST" id="ambiente_form" class="bg-gray-800 shadow-md rounded-lg p-8 space-y-6 w-full max-w-3xl">
+        {% csrf_token %}
+        <a href="{% url 'listar' %}" class="bg-blue-600 text-gray-100 py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Home
+        </a>        
+        <h3 class="text-2xl font-semibold border-b border-gray-700 pb-2">Cadastro de Ambiente</h3>
+
+        <!-- Campos do Ambiente -->
+        <div class="space-y-4">
+            <div class="flex flex-col space-y-1">
+                <label for="id_nome" class="text-gray-400">Nome do Ambiente</label>
+                <input
+                    type="text"
+                    id="id_nome"
+                    name="nome"
+                    class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                    placeholder="Digite o nome do ambiente"
+                    value="{{ ambiente_form.instance.nome }}"
+                    required
+                />
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="id_comprimento" class="text-gray-400">Comprimento (m)</label>
+                <input
+                    type="number"
+                    step="0.01"
+                    id="id_comprimento"
+                    name="comprimento"
+                    class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                    placeholder="Digite o comprimento"
+                    value="{{ ambiente_form.instance.comprimento }}"
+                    required
+                />
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="id_largura" class="text-gray-400">Largura (m)</label>
+                <input
+                    type="number"
+                    step="0.01"
+                    id="id_largura"
+                    name="largura"
+                    class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                    placeholder="Digite a largura"
+                    value="{{ ambiente_form.instance.largura }}"
+                    required
+                />
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="id_altura" class="text-gray-400">Altura (m)</label>
+                <input
+                    type="number"
+                    step="0.01"
+                    id="id_altura"
+                    name="altura"
+                    class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                    placeholder="Digite a altura"
+                    value="{{ ambiente_form.instance.altura }}"
+                    required
+                />
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="id_temperatura_interna" class="text-gray-400">Temperatura Interna (°C)</label>
+                <input
+                    type="number"
+                    step="0.1"
+                    id="id_temperatura_interna"
+                    name="temperatura_interna"
+                    class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                    placeholder="Digite a temperatura interna"
+                    value="{{ ambiente_form.instance.temperatura_interna }}"
+                />
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="id_temperatura_externa" class="text-gray-400">Temperatura Externa (°C)</label>
+                <input
+                    type="number"
+                    step="0.1"
+                    id="id_temperatura_externa"
+                    name="temperatura_externa"
+                    class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                    placeholder="Digite a temperatura externa"
+                    value="{{ ambiente_form.instance.temperatura_externa }}"
+                />
+            </div>
+        </div>
+
+        <!-- Cadastro de Camadas -->
+        <h3 class="text-2xl font-semibold border-b border-gray-700 pb-2 mt-8">Camadas</h3>
+        {{ form_camada.management_form }}
+        <div id="camada-form-container" class="space-y-6">
+            {% for form in form_camada %}
+                    <div class="flex flex-col space-y-1">
+                        <label for="{{ form.material.id_for_label }}" class="text-gray-400">Material</label>
+                        <input
+                            type="text"
+                            name="{{ form.material.name }}"
+                            id="{{ form.material.id_for_label }}"
+                            value="{{ form.material.value }}"
+                            class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                            placeholder="Digite o material"
+                        />
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label for="{{ form.espessura.id_for_label }}" class="text-gray-400">Espessura</label>
+                        <input
+                            type="number"
+                            step="0.01"
+                            name="{{ form.espessura.name }}"
+                            id="{{ form.espessura.id_for_label }}"
+                            value="{{ form.espessura.value }}"
+                            class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                            placeholder="Digite a espessura"
+                        />
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label for="{{ form.condutividade.id_for_label }}" class="text-gray-400">Condutividade</label>
+                        <input
+                            type="number"
+                            step="0.01"
+                            name="{{ form.condutividade.name }}"
+                            id="{{ form.condutividade.id_for_label }}"
+                            value="{{ form.condutividade.value }}"
+                            class="bg-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 py-2 px-4 rounded-md w-full"
+                            placeholder="Digite a condutividade"
+                        />
+                    </div>
+            {% endfor %}
+        </div>
+
+        {% if ambiente_form.instance.id %}
+            <div class="bg-gray-700 p-4 rounded-md shadow-md mt-6 space-y-4">
+                <p>Metros Quadrados Total: {{ ambiente_form.instance.area }}</p>
+                <p>Resistência Total: {{ ambiente_form.instance.calcular_resistencia_total }}</p>
+                <p>Fluxo de Calor Total: {{ ambiente_form.instance.fluxo_de_calor_total }}</p>
+                <p>BTUs Totais: {{ ambiente_form.instance.btus_totais }}</p>
+            </div>
+        {% endif %}
+        <button type="submit" class="w-full bg-blue-600 text-gray-100 py-2 px-4 rounded-md hover:bg-blue-700">
+            Salvar
+        </button>
+    </form>
+</div>
+
+{% block scripts %}
+<script src="{% static 'jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'jquery.formset.js' %}"></script>
+<script>
+    $(function() {
+        $('#camada-form-container').formset({
+            prefix: '{{ form_camada.prefix }}',
+            addText: '<div class="flex space-x-4 mt-4"><span class="bg-green-600 text-gray-100 py-2 px-4 rounded-md hover:bg-green-700 cursor-pointer">Adicionar nova Camada</span></div>',
+            deleteText: '<div class="flex space-x-4 mt-4"><span class="bg-red-600 text-gray-100 py-2 px-4 rounded-md hover:bg-red-700 cursor-pointer">Remover esta Camada</span></div>',
+            added: function(row) {
+                console.log('Nova camada adicionada!');
+                $(row).find('input, select').addClass('bg-gray-700 text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 rounded-md'); // Aplica o estilo aos novos campos adicionados dinamicamente
+            },
+            removed: function(row) {
+                console.log('Camada removida!');
+            },
+        });
+    });
+</script>
+{% endblock scripts %}
+</body>
+</html>
