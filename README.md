@@ -1,7 +1,8 @@
 
 # Dimensionar Ar Condicionado
 
-Projeto desenvolvido para auxiliar no cálculo de dimensionamento de sistemas de ar condicionado com base em características específicas de ambientes, como dimensões, temperatura, e materiais de isolamento.
+- Projeto desenvolvido para a disciplina de Fenomenos do transporte do curso de Eng. de Software | UniVassouras.
+- Professora: Ana Carolina
 
 ## Alunos
 - Tássia Nascimento | 202212166
