@@ -25,7 +25,7 @@ Projeto desenvolvido para auxiliar no cálculo de dimensionamento de sistemas de
 ## Configuração Inicial
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/usuario/projeto-ar-condicionado.git
+   git clone [https://github.com/JeandersonAmaral/Calculo-BTU](https://github.com/JeandersonAmaral/Calculo-BTU)
    cd projeto-ar-condicionado
    ```
 
